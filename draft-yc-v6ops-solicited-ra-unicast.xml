@@ -55,7 +55,7 @@
 <!-- <uri/> -->
       </address>
     </author>
-    <date year="2015" month="july" day="6" />
+    <date year="2015" />
     <area>General</area>
     <workgroup>IPv6 Operations</workgroup>
     <keyword>Neighbour Discovery</keyword>
