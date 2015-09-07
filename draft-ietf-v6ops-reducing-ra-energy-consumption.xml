@@ -2,6 +2,7 @@
 <!DOCTYPE rfc SYSTEM "rfc2629.dtd" [
 <!ENTITY RFC2119 SYSTEM "http://xml.resource.org/public/rfc/bibxml/reference.RFC.2119.xml">
 <!ENTITY RFC4861 SYSTEM "http://xml.resource.org/public/rfc/bibxml/reference.RFC.4861.xml">
+<!ENTITY RFC6059 SYSTEM "http://xml.resource.org/public/rfc/bibxml/reference.RFC.6059.xml">
 ]>
 <?xml-stylesheet type="text/xsl" href="rfc2629.xslt" ?> <!-- used by XSLT processors -->
 <!-- OPTIONS, known as processing instructions (PIs) go here. -->
@@ -67,7 +68,7 @@
   </front>
   <middle>
     <section title="Introduction">
-      <t>Routing information is communicated to IPv6 hosts by Router Advertisement messages. If these messages are too frequent, they can severely impact power consumption on battery-powered hosts.</t>
+      <t>Routing information is communicated to IPv6 hosts by Router Advertisement messages <xref target="RFC4861"/>. If these messages are too frequent, they can severely impact power consumption on battery-powered hosts.</t>
       <t>
           The key words "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL NOT",
           "SHOULD", "SHOULD NOT", "RECOMMENDED", "MAY", and "OPTIONAL" in
@@ -80,7 +81,7 @@
         <t>On links with a large number of battery-powered devices, sending solicited Router Advertisements multicast can severely impact host power consumption. This is because every time a device joins the network, all devices on the network receive a multicast Router Advertisement. In the worst case, if devices are continually joining and leaving the network, and the network is large enough, then all devices on the network will receive solicited Router Advertisements at the maximum rate specified by section 6.2.6 of <xref target="RFC4861"/>, which is one every 3 seconds.</t>
       </section>
       <section title="Frequent periodic Router Advertisements">
-        <t>Some networks send periodic multicast Router Advertisements (e.g., once every few seconds). This may be due to a desire to ensure that hosts always have access to up-to-date router information.</t>
+        <t>Some networks send periodic multicast Router Advertisements very frequently (e.g., once every few seconds). This may be due to a desire to ensure that hosts always have access to up-to-date router information. This has severe impact on battery life.</t>
       </section>
     </section>
 
@@ -97,13 +98,15 @@
 
     <section title="Recommendations">
       <t><list style="numbers">
-        <t>Router manufacturers SHOULD allow network administrators to configure the routers to respond to with unicast Router Advertisements to Router Solicitations if:
+        <t>Router manufacturers SHOULD allow network administrators to configure the routers to respond to Router Solicitations with unicast Router Advertisements if:
         <list style="symbols">
           <t>The Router Solicitation's source address is not the unspecified address, and:</t>
           <t>The solicitation contains a valid Source Link-Layer Address option.</t>
         </list></t>
         <t>Networks that serve large numbers (tens or hundreds) of battery-powered devices SHOULD enable this behaviour.</t>
         <t>Networks that serve battery-powered devices SHOULD NOT send multicast RAs too frequently (e.g., more than one every 5-10 minutes for current battery-powered devices) unless the information in the RA packet has substantially changed. If there is a desire to ensure that hosts pick up configuration changes quickly, those networks MAY send frequent Router Advertisements for a limited period of time (e.g., not more than one minute) immediately after a configuration change.</t>
+        <t>Mobile devices that intend to maintain IPv6 connectivity while asleep MUST NOT ignore RAs while asleep.</t>
+        <t>Mobile devices that do not intend to maintain IPv6 connectivity while asleep SHOULD disconnect from the IPv6 network and SHOULD reconnect to the network (including performing any DNAv6 procedures <xref target="RFC6059"/>, sending Router Solicitations and performing Duplicate Address Detection) when waking up.</t>
       </list></t>
       <t>No protocol changes are required. Responding to Router Solicitations with unicast Router Advertisements is already allowed by section 6.2.6 of <xref target="RFC4861"/>, and Router Advertisement intervals are already configurable by the administrator to a wide range of values.</t>
     </section>
@@ -125,6 +128,7 @@ None.
     <references title="Normative References">
       &RFC2119;
       &RFC4861;
+      &RFC6059;
     </references>
   </back>
 </rfc>
