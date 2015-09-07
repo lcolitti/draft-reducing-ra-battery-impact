@@ -97,18 +97,25 @@
 
 
     <section title="Recommendations">
-      <t><list style="numbers">
-        <t>Router manufacturers SHOULD allow network administrators to configure the routers to respond to Router Solicitations with unicast Router Advertisements if:
-        <list style="symbols">
-          <t>The Router Solicitation's source address is not the unspecified address, and:</t>
-          <t>The solicitation contains a valid Source Link-Layer Address option.</t>
+      <section title="Network-side recommendations">
+        <t><list style="numbers">
+          <t>Router manufacturers SHOULD allow network administrators to configure the routers to respond to Router Solicitations with unicast Router Advertisements if:
+          <list style="symbols">
+            <t>The Router Solicitation's source address is not the unspecified address, and:</t>
+            <t>The solicitation contains a valid Source Link-Layer Address option.</t>
+          </list></t>
+          <t>Administrators of networks that serve large numbers (tens or hundreds) of battery-powered devices SHOULD enable this behaviour.</t>
+          <t>Networks that serve battery-powered devices SHOULD NOT send multicast RAs too frequently (e.g., more than one every 5-10 minutes for current battery-powered devices) unless the information in the RA packet has substantially changed. If there is a desire to ensure that hosts pick up configuration changes quickly, those networks MAY send frequent Router Advertisements for a limited period of time (e.g., not more than one minute) immediately after a configuration change.</t>
         </list></t>
-        <t>Networks that serve large numbers (tens or hundreds) of battery-powered devices SHOULD enable this behaviour.</t>
-        <t>Networks that serve battery-powered devices SHOULD NOT send multicast RAs too frequently (e.g., more than one every 5-10 minutes for current battery-powered devices) unless the information in the RA packet has substantially changed. If there is a desire to ensure that hosts pick up configuration changes quickly, those networks MAY send frequent Router Advertisements for a limited period of time (e.g., not more than one minute) immediately after a configuration change.</t>
-        <t>Mobile devices that intend to maintain IPv6 connectivity while asleep MUST NOT ignore RAs while asleep.</t>
-        <t>Mobile devices that do not intend to maintain IPv6 connectivity while asleep SHOULD disconnect from the IPv6 network and SHOULD reconnect to the network (including performing any DNAv6 procedures <xref target="RFC6059"/>, sending Router Solicitations and performing Duplicate Address Detection) when waking up.</t>
-      </list></t>
-      <t>No protocol changes are required. Responding to Router Solicitations with unicast Router Advertisements is already allowed by section 6.2.6 of <xref target="RFC4861"/>, and Router Advertisement intervals are already configurable by the administrator to a wide range of values.</t>
+        <t>No protocol changes are required. Responding to Router Solicitations with unicast Router Advertisements is already allowed by section 6.2.6 of <xref target="RFC4861"/>, and Router Advertisement intervals are already configurable by the administrator to a wide range of values.</t>
+
+      </section>
+      <section title="Device-side recommendations">
+        <t><list style="numbers">
+          <t>Mobile devices that intend to maintain IPv6 connectivity while asleep MUST NOT ignore RAs while asleep.</t>
+          <t>Mobile devices that do not intend to maintain IPv6 connectivity while asleep SHOULD disconnect from the IPv6 network and SHOULD reconnect to the network (including performing any DNAv6 procedures <xref target="RFC6059"/>, sending Router Solicitations and performing Duplicate Address Detection) when waking up.</t>
+        </list></t>
+      </section>
     </section>
 
     <section anchor="Acknowledgements" title="Acknowledgements">
