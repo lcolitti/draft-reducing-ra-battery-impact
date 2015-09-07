@@ -68,7 +68,7 @@
   </front>
   <middle>
     <section title="Introduction">
-      <t>Routing information is communicated to IPv6 hosts by Router Advertisement messages <xref target="RFC4861"/>. If these messages are too frequent, they can severely impact power consumption on battery-powered hosts.</t>
+      <t>Routing information is communicated to IPv6 hosts by Router Advertisement (RA) messages <xref target="RFC4861"/>. If these messages are too frequent, they can severely impact power consumption on battery-powered hosts.</t>
       <t>
           The key words "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL NOT",
           "SHOULD", "SHOULD NOT", "RECOMMENDED", "MAY", and "OPTIONAL" in
@@ -112,7 +112,7 @@
     </section>
 
     <section anchor="Acknowledgements" title="Acknowledgements">
-      <t>The authors wish to thank Steven Barth, Erik Kline, Erik Nordmark, Alexandru Petrescu, and Mark Smith for feedback and helpful suggestions.
+      <t>The authors wish to thank Steven Barth, Frank Bulk, David Farmer, Ray Hunter, Erik Kline, Erik Nordmark, Alexandru Petrescu, Libor Polcak, Mark Smith, and Jinmei Tatuya for feedback and helpful suggestions.
       </t>
     </section>
     <section anchor="IANA" title="IANA Considerations">
