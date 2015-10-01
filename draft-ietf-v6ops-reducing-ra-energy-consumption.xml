@@ -140,7 +140,7 @@ None.
       </t>
     </section>
     <section anchor="Security" title="Security Considerations">
-      <t>None.</t>
+      <t>Misconfigured or malicious hosts sending rogue Router Advertisements [RFC6104] can also severely impact power consumption on battery-powered hosts if they send a significant number of such messages. Any IPv6 network where there is potential for misconfigured or malicious hosts should take appropriate countermeasures to mitigate the problem.</t>
     </section>
   </middle>
   <back>
