@@ -96,6 +96,18 @@
     </section>
 
 
+    <section title="Router Advertisement frequency" anchor="sec_frequency">
+      <t>The appropriate frequency of periodic RAs depends on how constrained the network devices are.
+        <list style="symbols"><t>Laptop-class devices will likely experience no noticeable battery life impact even if RAs are sent every few seconds.</t>
+          <t>Tables, phones, and watches require less frequent RAs. At the time of writing, current-generation devices might consume on the order of 5 mA when the main processor is asleep, but on receiving a packet, might consume on the order of 200 mA for 250ms as the packet causes the main processor to wake up, process the RA, attend to other pending tasks, and go back to sleep again. Thus, on such devices the cost of receiving one RA will be approximately 0.05mAh. In order to limit the amount of power used to receive Router Advertisements to, say, 5% of idle power (i.e., to impact idle battery life by no more than 5%), the average power budget for receiving RAs must be no more than 0.25mA, or 5 RAs per hour. Due to background multicast loss and the tendency of current devices to rate-limit multicast when asleep, many of these RAs might not reach the device, so minimum lifetimes for RA configuration parameters such as default router lifetime might need to be 5-8 times the RA frequency, or 45-90 minutes.
+
+          An idle time impact of 5% is likely negligible in practice, because such devices consume much more than idle power when being used. For example, a current-generation phone might have a 3000 mAh battery; if the device were idle and power consumption was 5mA, battery life would be 3000 / 5 = 600 hours, or 25 days. Real world numbers are much lower.</t>
+
+          <t>Specialized devices in non-general-purpose networks such as sensor networks might have tighter requirements. In these environments, even longer RA intervals might be appropriate.</t>
+        </list>
+      </t>
+    </section>
+
     <section title="Recommendations">
       <section title="Network-side recommendations">
         <t><list style="numbers">
@@ -105,7 +117,7 @@
             <t>The solicitation contains a valid Source Link-Layer Address option.</t>
           </list></t>
           <t>Administrators of networks that serve large numbers (tens or hundreds) of battery-powered devices SHOULD enable this behaviour.</t>
-          <t>Networks that serve battery-powered devices SHOULD NOT send multicast RAs too frequently (e.g., more than one every 5-10 minutes for current battery-powered devices) unless the information in the RA packet has substantially changed. If there is a desire to ensure that hosts pick up configuration changes quickly, those networks MAY send frequent Router Advertisements for a limited period of time (e.g., not more than one minute) immediately after a configuration change.</t>
+          <t>Networks that serve battery-powered devices SHOULD NOT send multicast RAs too frequently (see section <xref target="sec_frequency"/>) unless the information in the RA packet has substantially changed. If there is a desire to ensure that hosts pick up configuration changes quickly, those networks MAY send frequent Router Advertisements for a limited period of time (e.g., not more than one minute) immediately after a configuration change.</t>
         </list></t>
         <t>No protocol changes are required. Responding to Router Solicitations with unicast Router Advertisements is already allowed by section 6.2.6 of <xref target="RFC4861"/>, and Router Advertisement intervals are already configurable by the administrator to a wide range of values.</t>
 
