@@ -128,14 +128,14 @@ In order to limit the amount of power used to receive Router Advertisements to, 
       </section>
       <section title="Device-side recommendations">
         <t><list style="numbers">
-          <t>Mobile devices that intend to maintain IPv6 connectivity while asleep MUST NOT ignore RAs while asleep.</t>
-          <t>Mobile devices that do not intend to maintain IPv6 connectivity while asleep SHOULD disconnect from the IPv6 network and SHOULD reconnect to the network (including performing any DNAv6 procedures <xref target="RFC6059"/>, sending Router Solicitations and performing Duplicate Address Detection) when waking up.</t>
+          <t>Maintaining IPv6 connectivity requires that hosts be able to receive periodic multicast RAs <xref target="RFC4861"/> Therefore, hosts that process unicast packets sent while they are asleep MUST also process multicast RAs sent while they are asleep. Battery-powered hosts MAY rate-limit identical RAs if they are sent too frequently.</t>
+          <t>Battery-powered devices that do not intend to maintain IPv6 connectivity while asleep SHOULD either disconnect from the network, abandoning all IPv6 configuration on that network, or perform DNAv6 procedures <xref target="RFC6059"/> when waking up.</t>
         </list></t>
       </section>
     </section>
 
     <section anchor="Acknowledgements" title="Acknowledgements">
-      <t>The authors wish to thank Steven Barth, Frank Bulk, David Farmer, Ray Hunter, Erik Kline, Erik Nordmark, Alexandru Petrescu, Libor Polcak, Mark Smith, and Jinmei Tatuya for feedback and helpful suggestions.
+      <t>The authors wish to thank Steven Barth, Frank Bulk, David Farmer, Igor Gashinsky, Ray Hunter, Erik Kline, Erik Nordmark, Alexandru Petrescu, Libor Polcak, Mark Smith, Jinmei Tatuya and James Woodyatt for feedback and helpful suggestions.
       </t>
     </section>
     <section anchor="IANA" title="IANA Considerations">
