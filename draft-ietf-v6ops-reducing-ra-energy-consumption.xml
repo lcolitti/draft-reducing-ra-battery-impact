@@ -81,7 +81,7 @@
         <t>On links with a large number of battery-powered devices, sending solicited Router Advertisements multicast can severely impact host power consumption. This is because every time a device joins the network, all devices on the network receive a multicast Router Advertisement. In the worst case, if devices are continually joining and leaving the network, and the network is large enough, then all devices on the network will receive solicited Router Advertisements at the maximum rate specified by section 6.2.6 of <xref target="RFC4861"/>, which is one every 3 seconds.</t>
       </section>
       <section title="Frequent periodic Router Advertisements">
-        <t>Some networks send periodic multicast Router Advertisements very frequently (e.g., once every few seconds). This may be due to a desire to ensure that hosts always have access to up-to-date router information. This has severe impact on battery life.</t>
+        <t>Some networks send periodic multicast Router Advertisements very frequently (e.g., once every few seconds). This may be due to a desire to minimize customer impact of network renumbering events, which in some large residential networks occur relatively frequently. In the presence of hosts that ignore RAs or even all IPv6 packets when in sleep mode, such networks may see a need to send RAs frequently in order to avoid leaving devices with non-functional IPv6 configurations for extended periods of time. Unfortunately, this has severe impact on battery life.</t>
       </section>
     </section>
 
